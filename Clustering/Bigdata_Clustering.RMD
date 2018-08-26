@@ -1,0 +1,21 @@
+
+PART 1:
+Step1: attach(Data587)
+Step2: plot(Data587)
+Step3: set.seed(787)
+Step4: 
+> withinSumSqrs = numeric(20)
+> for (k in 1:20) withinSumSqrs[k] = sum(kmeans(Data587,centers=k)$withinss)
+> plot(1:20, withinSumSqrs, type="b", xlab="# Clusters", ylab="Within sum of square")
+
+Step5: 
+> new_kmeans=kmeans(Data587,4) // for K=4 from step 4
+> plot(new_kmeans)
+
+PART 2:
+Step1: 
+> d <- dist(Data587, method = "euclidean")
+> fit <- hclust(d, method="ward.D")
+> plot(fit)
+
+Step2: rect.hclust(fit, k=4, border="red")
