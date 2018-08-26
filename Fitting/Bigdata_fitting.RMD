@@ -1,0 +1,34 @@
+1.
+a.	plot(gold_target1$`0.1`,gold_target1$`0.4`)
+
+b.	linear_fitting = lm(gold_target1$`0.1`~ gold_target1$`0.4`)
+
+c.	par(mfrow=c(2,2))> plot(linear_fitting)
+
+d.	The Residuals are spaced around the estimated regression line. We can assume from this inference that relationship is reasonably linear. The points are distributed in a uniform band from (-4, 4) that means the error variations is uniform.
+
+(There seemed to be 3 points out of pattern with the rest of them. Since it is a smaller data set, the difference shown is very high but it doesn’t actually contribute to the deviation from linear assumption a lot.) 
+
+e.	>ypred = predict(linear_fitting)
+> par(mfrow=c(1,1))
+      > plot(gold_target1$`0.4`,ypred,type='l', xlab="observed y", ylab="predicted y")
+      > points(gold_target1$`0.4`, ypred)
+
+
+
+2.
+
+a. > plot(gold_target1$`0.4`,gold_target1$`0_1`)
+
+b. > plot(gold_target1$`0.1`,gold_target1$`0_1`)
+
+c. > glm.out = glm(gold_target1$`0_1` ~ gold_target1$`0.1`, family=binomial(logit), data=gold_target1)
+
+d. > plot(gold_target1$`0_1`~gold_target1$`0.1`)
+   > lines(gold_target1$`0.1`,glm.out$fitted,type="l", col="red")
+
+e. > glm.out_combined = glm(gold_target1$`0_1` ~ gold_target1$`0.1`+gold_target1$`0.4`, family=binomial(logit), data=gold_target1)
+
+f. Estimated coefficient for gold_target$’0.1’ for glm.out(summary) = 1.7427
+Estimated coefficient for gold_target$’0.1’ for glm.out_combined(summary) = 0.9190
+The confidence for the two estimates remains the same.  
