@@ -1,0 +1,53 @@
+1. #No.of players in the data
+BigBucks=FBS[as.logical(rowSums(FBS[5] < 1000000)), c(1, 2,  3,4 ,5)]
+a)	#No.of players in BigBucks list = 1230
+nrow(BigBucks)
+   b) hist(Cap.Hit/10000000,breaks=5,xlab = "Salaries in Millions", main="Histogram of BigBucks")
+
+2. #Minimum salary and players with minimum salary
+minimum_salary=min(FBS[,5])
+subset(FBS, FBS[,5] == minimum_salary)
+
+3.#No. of millionaires 
+
+millionaire=FBS[as.logical(rowSums(FBS[5] >= 1000000)), c(1,2,3,4,5)]
+nrow(millionaire)
+
+4. #No. of players above 10 million 
+Ten_million=FBS[as.logical(rowSums(FBS[5] >= 10000000)), c(1,2,3,4,5)]
+nrow(Ten_million)
+
+5. #Comaparing salaries of DAL and GNB 
+
+Cowboys = FBS[as.logical(rowSums(FBS[4] == "DAL")), c(1, 2,  3,4 ,5)]
+Cowboys
+Packers = FBS[as.logical(rowSums(FBS[4] == "GNB")), c(1, 2,  3,4 ,5)]
+Packers 
+
+a)	sum(Cowboys$Cap.Hit)
+sum(Packers$Cap.Hit)
+
+b)	max(Cowboys$Cap.Hit)
+High_sal_Cowboys=FBS[as.logical(rowSums(FBS[5] == 9000000)), c(1, 2,  3,4 ,5)]
+High_sal_Cowboys
+
+   max(Packers$Cap.Hit)
+      High_sal_Packers=FBS[as.logical(rowSums(FBS[5] == max(Packers$Cap.Hit))), c(1, 2,  3,4 ,5)]
+     High_sal_Packers
+
+c)	mean(Cowboys$Cap.Hit)
+mean(Packers$Cap.Hit)
+
+d)	Cowboy_millionaire=Cowboys[as.logical(rowSums(Cowboys[5] >= 1000000)), c(1,2,3,4,5)]
+
+Nrow(Cowboy_millionaire)
+
+Packer_millionaire=Packers[as.logical(rowSums(Packers[5] >= 1000000)), c(1,2,3,4,5)]
+
+Nrow(Packer_millionaire)
+
+e)	hist(Cowboys$Cap.Hit/1000000,xlab = "Salaries of Cowboys", main="Histogram of Cowboys Salaries")
+hist(Packers$Cap.Hit/1000000,xlab = "Salaries of Packers", main="Histogram of Packers Salaries")
+
+6. #No. of different teams in the data 
+	unique(FBS$Tm)
