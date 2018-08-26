@@ -1,0 +1,44 @@
+PART-1
+
+y=MaunaLoa$interpolated
+x = 1:length(y)
+plot.ts(x,y,main="plot.ts(x,y)")
+fit<-lm(y~x)
+plot(x,y)
+abline(fit, col=’red’)
+yy = y-fitted(fit)
+plot(x,yy, main="detrended plot")
+
+
+PART-2
+
+newY <- MaunaLoa$interpolated[c(203:394)]
+newX <- 1:length(newY)
+newFit <- lm(newY~newX)
+plot.ts(newX, newY, main="plot.ts (newX,newY")
+abline(newFit, col='red')
+new_yy = newY - fitted(newFit)
+plot(newX, new_yy, main = "detrended plot with subset")
+
+
+PART -3 
+
+monthlyAverage<-function(detrendedY,month){
+  result <- mean(detrendedY[which(MaunaLoa$Month[203:394]==month)])
+  return(result)
+  }
+
+ deCycle<-function(detrendedY){
+ results <- as.numeric()
+ for(i in 1:12){
+ each_month <- monthlyAverage(detrendedY,i)
+ results=c(results,each_month)
+ }
+ return(results)
+ }
+
+plot(newX, new_yy, main = "detrended plot for subset")
+
+cyclic_yy = new_yy - deCycle(new_yy)
+
+points(cyclic_yy,col='red')
